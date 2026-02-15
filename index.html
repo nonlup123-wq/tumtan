@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Love Book 💕</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffe1ec,#fff6fa);
+  font-family:'Itim', cursive;
+}
+
+/* ===== กล่องหลัก ===== */
+.card{
+  width:340px;
+  background:#fffafc;
+  border-radius:26px;
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
+  overflow:hidden;
+  animation:fadeIn .8s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* ===== หน้าใส่รหัส ===== */
+#login{
+  padding:28px;
+  text-align:center;
+}
+
+.dolls{
+  font-size:40px;
+  animation:bounce 1.5s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:16px;
+  border:1px solid #ddd;
+  font-size:16px;
+  margin-top:15px;
+}
+input:focus{
+  outline:none;
+  border-color:#ff8abf;
+  box-shadow:0 0 0 2px #ffd6e8;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:18px;
+  border:none;
+  border-radius:18px;
+  background:#ff6fae;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:.2s;
+}
+button:active{transform:scale(.95);}
+
+#error{
+  margin-top:10px;
+  color:#ff3b3b;
+  display:none;
+}
+
+/* ===== หนังสือ ===== */
+#book{
+  display:none;
+}
+
+.page{
+  display:none;
+  padding:24px;
+  text-align:center;
+}
+
+.page.active{
+  display:block;
+  animation:pageIn .4s ease;
+}
+@keyframes pageIn{
+  from{opacity:0; transform:translateX(30px);}
+  to{opacity:1; transform:translateX(0);}
+}
+
+.page h2{
+  color:#ff5fa2;
+}
+
+.page p{
+  color:#555;
+  font-size:16px;
+}
+
+.page img{
+  width:100%;
+  border-radius:18px;
+  margin:12px 0;
+}
+
+/* ===== ปุ่มเปลี่ยนหน้า ===== */
+.controls{
+  display:flex;
+  justify-content:space-between;
+  padding:14px;
+  background:#fff;
+}
+
+.controls button{
+  width:auto;
+  padding:10px 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- หน้าใส่รหัส -->
+  <div id="login">
+    <div class="dolls">🧸🐰🐻</div>
+    <h2>ตั้มถึงตาล 💕</h2>
+    <p>รหัสผ่านอะไรเอ๋ยอ้วน</p>
+
+    <input type="password" id="password" placeholder="รหัสผ่าน">
+    <button onclick="checkPassword()">ต่อปายยยย 📖</button>
+    <div id="error">คือจำบ่ได้ 😢</div>
+  </div>
+
+  <!-- หนังสือ -->
+  <div id="book">
+
+    <!-- หน้า 1 -->
+    <div class="page active">
+      <h2>📖 ย้อนหลัง</h2>
+      <p>สัขสันต์วันวาเลนไทน์นะอ้วน 💖</p>
+      <div style="font-size:36px;">🧸✨</div>
+    </div>
+
+    <!-- หน้า 2 -->
+    <div class="page">
+      <h2>💞 เค้าก็อยากซื้อดอกไม้ให้อ้วนนะ</h2>
+      <img src="05.jpg">
+      <p>แต่ระยะทางเราห่างกันมากได้แต่ถ่ายแบบนี้ให้</p>
+    </div>
+
+    <!-- หน้า 3 -->
+    <div class="page">
+      <h2>🌸 เค้ารักตาลมากเลยนะ</h2>
+      <img src="01.jpg">
+      <p>นี้เป็นรูปคู่แรกของเราเค้าดีใจมากเลยแหละที่ได้ถ่ายกับอ้วน</p>
+    </div>
+
+    <!-- หน้า 4 -->
+    <div class="page">
+      <h2>💌 สุดท้ายแล้วที่เค้าจะบอก</h2>
+      <p>
+        ขอบคุณที่อยู่ข้างๆกันเสมอ<br>
+        รักตาลนะขอให้เฮาได้อยู่นำกันตลอดไปเลยนะอ้วน 🤍
+      </p>
+    </div>
+
+    <!-- ปุ่ม -->
+    <div class="controls">
+      <button onclick="prevPage()">⬅️ ก่อนหน้า</button>
+      <button onclick="nextPage()">ถัดไป ➡️</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ===== ระบบรหัส ===== */
+function checkPassword(){
+  const pass = document.getElementById("password").value;
+  const correct = "301168"; // 🔐 เปลี่ยนรหัสตรงนี้
+
+  if(pass === correct){
+    document.getElementById("login").style.display="none";
+    document.getElementById("book").style.display="block";
+  }else{
+    document.getElementById("error").style.display="block";
+  }
+}
+
+/* ===== เปลี่ยนหน้า ===== */
+let currentPage = 0;
+const pages = document.querySelectorAll(".page");
+
+function showPage(i){
+  pages.forEach(p => p.classList.remove("active"));
+  pages[i].classList.add("active");
+}
+
+function nextPage(){
+  if(currentPage < pages.length - 1){
+    currentPage++;
+    showPage(currentPage);
+  }
+}
+
+function prevPage(){
+  if(currentPage > 0){
+    currentPage--;
+    showPage(currentPage);
+  }
+}
+</script>
+
+</body>
+</html>
